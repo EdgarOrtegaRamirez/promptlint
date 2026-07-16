@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "promptlint"
+version = "0.1.0"
+description = "AI prompt quality analyzer — score, validate, and improve prompts"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    {name = "EdgarOrtegaRamirez"}
+]
+dependencies = [
+    "click>=8.1.7,<9",
+    "pydantic>=2.0,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9",
+    "pytest-cov>=4,<6",
+]
+
+[project.scripts]
+promptlint = "promptlint.cli:main"
