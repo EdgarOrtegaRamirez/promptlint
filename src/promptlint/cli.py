@@ -129,7 +129,6 @@ def analyze(
 
     # Filter by category if specified
     if category:
-        from .models import IssueCategory
         result.issues = [
             i for i in result.issues
             if i.category.value == category

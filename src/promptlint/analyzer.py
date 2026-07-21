@@ -303,9 +303,6 @@ class PromptAnalyzer:
         total_max = 0.0
         total_achieved = 0.0
 
-        # Split into lines for line-number tracking
-        lines = text.splitlines()
-
         for rule_info in self.rules:
             rule = rule_info["rule"]
             rule_type = rule_info["type"]

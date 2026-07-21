@@ -1,8 +1,7 @@
 """Tests for the PromptAnalyzer engine."""
 
-import pytest
 from promptlint.analyzer import PromptAnalyzer
-from promptlint.models import PromptScore, Severity, IssueCategory
+from promptlint.models import PromptScore, IssueCategory
 
 
 class TestPromptAnalyzerBasic:
