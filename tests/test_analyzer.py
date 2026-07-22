@@ -59,19 +59,25 @@ class TestAntiPatterns:
     def test_vague_action_detected(self):
         prompt = "make this better"
         result = self.analyzer.analyze(prompt)
-        anti_patterns = [i for i in result.issues if i.category == IssueCategory.ANTI_PATTERN]
+        anti_patterns = [
+            i for i in result.issues if i.category == IssueCategory.ANTI_PATTERN
+        ]
         assert len(anti_patterns) > 0
 
     def test_missing_context_detected(self):
         prompt = "create something cool"
         result = self.analyzer.analyze(prompt)
-        anti_patterns = [i for i in result.issues if i.category == IssueCategory.ANTI_PATTERN]
+        anti_patterns = [
+            i for i in result.issues if i.category == IssueCategory.ANTI_PATTERN
+        ]
         assert len(anti_patterns) > 0
 
     def test_overly_broad_detected(self):
         prompt = "improve the entire project code"
         result = self.analyzer.analyze(prompt)
-        anti_patterns = [i for i in result.issues if i.category == IssueCategory.ANTI_PATTERN]
+        anti_patterns = [
+            i for i in result.issues if i.category == IssueCategory.ANTI_PATTERN
+        ]
         assert len(anti_patterns) > 0
 
 
@@ -84,7 +90,9 @@ class TestCompletenessChecks:
     def test_role_specification_found(self):
         prompt = "Act as a Python developer and write a function"
         result = self.analyzer.analyze(prompt)
-        completeness = [i for i in result.issues if i.category == IssueCategory.COMPLETENESS]
+        completeness = [
+            i for i in result.issues if i.category == IssueCategory.COMPLETENESS
+        ]
         role_issues = [i for i in completeness if i.rule_id == "C001"]
         assert len(role_issues) == 0
 

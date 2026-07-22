@@ -29,7 +29,9 @@ class TestCLI:
         assert "Score:" in result.output
 
     def test_analyze_stdin(self):
-        result = self.runner.invoke(main, ["analyze", "--stdin"], input="Write a Python function\n")
+        result = self.runner.invoke(
+            main, ["analyze", "--stdin"], input="Write a Python function\n"
+        )
         assert result.exit_code == 0
         assert "Score:" in result.output
 
@@ -39,12 +41,16 @@ class TestCLI:
         assert "Empty prompt" in result.output or "No prompt provided" in result.output
 
     def test_analyze_file_not_found(self):
-        result = self.runner.invoke(main, ["analyze", "--file", "/nonexistent/path.txt"])
+        result = self.runner.invoke(
+            main, ["analyze", "--file", "/nonexistent/path.txt"]
+        )
         assert result.exit_code != 0
         assert "not found" in result.output
 
     def test_analyze_json_output(self):
-        result = self.runner.invoke(main, ["analyze", "--text", "test", "--format", "json"])
+        result = self.runner.invoke(
+            main, ["analyze", "--text", "test", "--format", "json"]
+        )
         assert result.exit_code == 0
         data = json.loads(result.output)
         assert "score" in data
@@ -55,7 +61,15 @@ class TestCLI:
         output_file = tmp_path / "report.json"
         result = self.runner.invoke(
             main,
-            ["analyze", "--text", "test", "--format", "json", "--json-file", str(output_file)],
+            [
+                "analyze",
+                "--text",
+                "test",
+                "--format",
+                "json",
+                "--json-file",
+                str(output_file),
+            ],
         )
         assert result.exit_code == 0
         assert output_file.exists()
@@ -63,7 +77,9 @@ class TestCLI:
         assert "score" in data
 
     def test_analyze_markdown_output(self):
-        result = self.runner.invoke(main, ["analyze", "--text", "test", "--format", "markdown"])
+        result = self.runner.invoke(
+            main, ["analyze", "--text", "test", "--format", "markdown"]
+        )
         assert result.exit_code == 0
         assert "# PromptLint" in result.output
 
@@ -88,13 +104,13 @@ Constraints:
         assert result.exit_code == 0
 
     def test_analyze_strict_mode_fail(self):
-        result = self.runner.invoke(main, ["analyze", "--text", "do something", "--strict"])
+        result = self.runner.invoke(
+            main, ["analyze", "--text", "do something", "--strict"]
+        )
         assert result.exit_code == 1
 
     def test_analyze_both_text_and_file(self):
-        result = self.runner.invoke(
-            main, ["analyze", "--text", "foo", "--file", "bar"]
-        )
+        result = self.runner.invoke(main, ["analyze", "--text", "foo", "--file", "bar"])
         assert result.exit_code != 0
         assert "Cannot specify both" in result.output
 
