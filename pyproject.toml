@@ -23,5 +23,11 @@ dev = [
     "pytest-cov>=4,<7",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=8.0,<10",
+    "pytest-cov>=4,<7",
+]
+
 [project.scripts]
 promptlint = "promptlint.cli:main"
